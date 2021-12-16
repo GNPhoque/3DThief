@@ -41,4 +41,9 @@ public class Rotatable : MonoBehaviour, IUsable
 			isOpen = !isOpen;
 		}
 	}
+
+	public void LongUse()
+	{
+		Use();
+	}
 }

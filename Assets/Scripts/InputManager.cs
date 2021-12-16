@@ -16,6 +16,9 @@ public class InputManager : MonoBehaviour
         inputs.sprintUp = Input.GetButtonUp("Sprint");
         inputs.sneak = Input.GetButton("Sneak");
         inputs.sneakUp = Input.GetButtonUp("Sneak");
+        inputs.use = Input.GetButton("Use");
+        inputs.useDown = Input.GetButtonDown("Use");
+        inputs.useUp = Input.GetButtonUp("Use");
 
         //Debug.Log(inputs.ToString());
     }
