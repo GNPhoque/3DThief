@@ -7,7 +7,9 @@ using UnityEngine.Events;
 public class Rotatable : MonoBehaviour, IUsable
 {
 	[SerializeField]
-	UnityEvent OnUsed;
+	UnityEvent OnOpen;
+	[SerializeField]
+	UnityEvent OnClose;
 	[SerializeField]
 	Vector3 rotation;
 	[SerializeField]
@@ -46,6 +48,10 @@ public class Rotatable : MonoBehaviour, IUsable
 						collided = false;
 						Use();
 					}
+					else
+					{
+						OnClose?.Invoke();
+					}
 				};
 			}
 			else
@@ -58,6 +64,10 @@ public class Rotatable : MonoBehaviour, IUsable
 					{
 						collided = false;
 						Use();
+					}
+					else
+					{
+						OnOpen?.Invoke();
 					}
 				};
 			}
