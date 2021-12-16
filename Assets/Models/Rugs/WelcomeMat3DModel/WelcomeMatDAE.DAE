@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
+    </contributor>
+    <created>2019-06-20T11:04:10Z</created>
+    <modified>2019-06-20T11:04:10Z</modified>
+    <revision></revision>
+    <title></title>
+    <subject></subject>
+    <keywords></keywords>
+    <unit meter="0.025400"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="Map__1-image" name="Map__1">
+      <init_from>file://C:\Users\TruHoffman\Desktop\WelcomeMat\WelcomeMat3DModel\Textures\WelcomeMatClear_diffuse.jpg</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="Material__35" name="Material__35">
+      <instance_effect url="#Material__35-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="Material__35-fx" name="Material__35">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="Map__1-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>ADD</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent>
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="welcome_mat_timb-lib" name="welcome_mat_timbMesh">
+      <mesh>
+        <source id="welcome_mat_timb-lib-Position">
+          <float_array id="welcome_mat_timb-lib-Position-array" count="72">
+39.027699 21.726601 -0.000000
+39.027699 -32.730598 0.000000
+-48.103901 -32.730598 0.000000
+-48.103901 21.726601 -0.000000
+39.027699 21.726601 4.171400
+-48.103901 21.726601 4.171400
+-48.103901 -32.730598 4.171400
+39.027699 -32.730598 4.171400
+39.027699 21.726601 -0.000000
+-48.103901 21.726601 -0.000000
+-48.103901 21.726601 4.171400
+39.027699 21.726601 4.171400
+-48.103901 21.726601 -0.000000
+-48.103901 -32.730598 0.000000
+-48.103901 -32.730598 4.171400
+-48.103901 21.726601 4.171400
+-48.103901 -32.730598 0.000000
+39.027699 -32.730598 0.000000
+39.027699 -32.730598 4.171400
+-48.103901 -32.730598 4.171400
+39.027699 -32.730598 0.000000
+39.027699 21.726601 -0.000000
+39.027699 21.726601 4.171400
+39.027699 -32.730598 4.171400
+</float_array>
+          <technique_common>
+            <accessor source="#welcome_mat_timb-lib-Position-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="welcome_mat_timb-lib-Normal0">
+          <float_array id="welcome_mat_timb-lib-Normal0-array" count="108">
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#welcome_mat_timb-lib-Normal0-array" count="36" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="welcome_mat_timb-lib-UV0">
+          <float_array id="welcome_mat_timb-lib-UV0-array" count="48">
+0.999500 0.000500
+0.999500 0.999500
+0.000500 0.999500
+0.000500 0.000500
+0.000500 0.000500
+0.999500 0.000500
+0.999500 0.999500
+0.000500 0.999500
+0.000500 0.000500
+0.999500 0.000500
+0.999500 0.000500
+0.000500 0.000500
+0.999500 0.000500
+0.999500 0.999500
+0.999500 0.999500
+0.999500 0.000500
+0.999500 0.999500
+0.000500 0.999500
+0.000500 0.999500
+0.999500 0.999500
+0.000500 0.999500
+0.000500 0.000500
+0.000500 0.000500
+0.000500 0.999500
+</float_array>
+          <technique_common>
+            <accessor source="#welcome_mat_timb-lib-UV0-array" count="24" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="welcome_mat_timb-lib-VertexColors0">
+          <float_array id="welcome_mat_timb-lib-VertexColors0-array" count="96">
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+1.000000 1.000000 1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#welcome_mat_timb-lib-VertexColors0-array" count="24" stride="4">
+              <param name="R" type="double"/>
+              <param name="G" type="double"/>
+              <param name="B" type="double"/>
+              <param name="A" type="double"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="welcome_mat_timb-lib-Vertex">
+          <input semantic="POSITION" source="#welcome_mat_timb-lib-Position"/>
+        </vertices>
+        <polygons material="Material__35" count="12">
+          <input semantic="VERTEX" offset="0" source="#welcome_mat_timb-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#welcome_mat_timb-lib-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#welcome_mat_timb-lib-UV0"/>
+          <input semantic="COLOR" offset="3" set="0" source="#welcome_mat_timb-lib-VertexColors0"/>
+          <p>0 0 0 0 1 1 1 1 2 2 2 2</p>
+          <p>2 3 2 2 3 4 3 3 0 5 0 0</p>
+          <p>4 6 4 4 5 7 5 5 6 8 6 6</p>
+          <p>6 9 6 6 7 10 7 7 4 11 4 4</p>
+          <p>8 12 8 8 9 13 9 9 10 14 10 10</p>
+          <p>10 15 10 10 11 16 11 11 8 17 8 8</p>
+          <p>12 18 12 12 13 19 13 13 14 20 14 14</p>
+          <p>14 21 14 14 15 22 15 15 12 23 12 12</p>
+          <p>16 24 16 16 17 25 17 17 18 26 18 18</p>
+          <p>18 27 18 18 19 28 19 19 16 29 16 16</p>
+          <p>20 30 20 20 21 31 21 21 22 32 22 22</p>
+          <p>22 33 22 22 23 34 23 23 20 35 20 20</p>
+        </polygons>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="RootNode" name="RootNode">
+      <node id="welcome_mat_timb" name="welcome_mat_timb">
+        <rotate sid="jointOrientX">1 0 0 -90.000000</rotate>
+        <scale sid="scale">1.000000 1.000000 0.543589</scale>
+        <instance_geometry url="#welcome_mat_timb-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material__35" target="#Material__35"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#RootNode"/>
+  </scene>
+</COLLADA>
+

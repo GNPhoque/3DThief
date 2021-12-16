@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 60ddae2a500e8754493957fd8380c8e3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - rb: {instanceID: 0}
+  - t: {instanceID: 0}
+  - moveStateMachine: {instanceID: 0}
+  - animator: {instanceID: 0}
+  - inputs: {fileID: 11400000, guid: 1b8c4298d5eed984881ef465dba74d4e, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
