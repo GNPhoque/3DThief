@@ -54,6 +54,10 @@ public class PlayerController : MonoBehaviour
 	bool isSliding;
 	bool isFacingStairs;
 	float currentSpeed;
+	[SerializeField]
+	float currentGroundAngle;
+	[SerializeField]
+	float angleInFront;
 
 	//PUBLIC PROPERTIES
 	public Vector3 velocity
@@ -94,7 +98,10 @@ public class PlayerController : MonoBehaviour
 			rb.MoveRotation(Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation(cameraForward), rotationSpeed));
 		}
 		CheckGround();
-		StepClimb(); 
+		if (!isSliding)
+		{
+			StepClimb();  
+		}
 		if (inputs.jump && isGrounded && !_isJumping)
 		{
 			Debug.Log("Jump");
@@ -146,6 +153,7 @@ public class PlayerController : MonoBehaviour
 		if (Physics.Raycast(ray, out hit, radius * 5f))
 		{
 			float normalAngle = Vector3.Angle(hit.normal, transform.up);
+			currentGroundAngle = normalAngle;
 			if (normalAngle < slopeLimit)
 			{
 				float maxDist = radius / Mathf.Cos(Mathf.Deg2Rad * normalAngle) - radius + (_isJumping?.02f:.5f);
@@ -165,50 +173,114 @@ public class PlayerController : MonoBehaviour
 
 	void StepClimb()
 	{
+		Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+		angleInFront = 0f;
 		RaycastHit hitLower;
-		if (Physics.Raycast(stepRayLower.position, transform.TransformDirection(Vector3.forward), out hitLower, capsule.radius + 0.01f))
+		Debug.DrawRay(stepRayLower.position, flatVelocity.normalized * (capsule.radius + .2f), Color.red);
+		if (Physics.Raycast(stepRayLower.position, flatVelocity + transform.TransformDirection(Vector3.forward), out hitLower, capsule.radius + 0.1f))
 		{
 			float normalAngle = Vector3.Angle(hitLower.normal, transform.up);
-			if (normalAngle == 90f)
+			Debug.Log(normalAngle);
+			angleInFront = normalAngle;
+			//if (Mathf.Approximately(normalAngle, 90f))
+			if (normalAngle > slopeLimit)
 			{
-				Debug.Log(normalAngle);
 				RaycastHit hitUpper;
-				if (!Physics.Raycast(stepRayUpper.position, transform.TransformDirection(Vector3.forward), out hitUpper, capsule.radius + 0.2f))
+				Debug.DrawRay(stepRayUpper.position, ((flatVelocity + transform.TransformDirection(Vector3.forward)).normalized) * (hitLower.distance + .01f), Color.red);
+				if (!Physics.Raycast(stepRayUpper.position, flatVelocity + transform.TransformDirection(Vector3.forward), out hitUpper, hitLower.distance + .01f))
 				{
 					rb.position += new Vector3(0f, stepSmooth * currentSpeed * Time.deltaTime, 0f);
 					isGrounded = true;
-				} 
-			}
-		}
-
-		RaycastHit hitLower45;
-		if (Physics.Raycast(stepRayLower.position, transform.TransformDirection(1.5f, 0, 1), out hitLower45, capsule.radius + 0.2f))
-		{
-			float normalAngle = Vector3.Angle(hitLower.normal, transform.up);
-			if (normalAngle == 90f)
-			{
-				Debug.Log(normalAngle);
-				RaycastHit hitUpper45;
-				if (!Physics.Raycast(stepRayUpper.position, transform.TransformDirection(1.5f, 0, 1), out hitUpper45, capsule.radius + 0.2f))
-				{
-					rb.position += new Vector3(0f, stepSmooth * currentSpeed * Time.deltaTime, 0f);
 				}
 			}
 		}
 
-		RaycastHit hitLowerMinus45;
-		if (Physics.Raycast(stepRayLower.position, transform.TransformDirection(-1.5f, 0, 1), out hitLowerMinus45, capsule.radius + 0.2f))
-		{
-			float normalAngle = Vector3.Angle(hitLower.normal, transform.up);
-			if (normalAngle == 90f)
-			{
-				Debug.Log(normalAngle);
-				RaycastHit hitUpperMinus45;
-				if (!Physics.Raycast(stepRayUpper.position, transform.TransformDirection(-1.5f, 0, 1), out hitUpperMinus45, capsule.radius + 0.2f))
-				{
-					rb.position += new Vector3(0f, stepSmooth * currentSpeed * Time.deltaTime, 0f);
-				}
-			}
-		}
+		//RaycastHit hitLower45;
+		//Debug.DrawRay(stepRayLower.position, (flatVelocity + transform.TransformDirection(1.5f, 0, 1)).normalized * (capsule.radius + .2f), Color.red);
+		//if (Physics.Raycast(stepRayLower.position, flatVelocity + transform.TransformDirection(1.5f, 0, 1), out hitLower45, capsule.radius + 0.2f))
+		//{
+		//	float normalAngle = Vector3.Angle(hitLower.normal, transform.up);
+		//	//if (Mathf.Approximately(normalAngle, 90f))
+		//	if (normalAngle > slopeLimit && normalAngle < 91f)
+		//	{
+		//		Debug.Log(normalAngle);
+		//		RaycastHit hitUpper45;
+		//		Debug.DrawRay(stepRayUpper.position, ((flatVelocity + transform.TransformDirection(1.5f, 0, 1)).normalized) * (hitLower.distance + .01f), Color.red);
+		//		if (!Physics.Raycast(stepRayUpper.position, flatVelocity + transform.TransformDirection(1.5f, 0, 1), out hitUpper45, hitLower45.distance + .01f))
+		//		{
+		//			rb.position += new Vector3(0f, stepSmooth * currentSpeed * Time.deltaTime, 0f);
+		//			isGrounded = true;
+		//		}
+		//	}
+		//}
+
+		//RaycastHit hitLowerMinus45;
+		//Debug.DrawRay(stepRayLower.position, (flatVelocity + transform.TransformDirection(-1.5f, 0, 1)).normalized * (capsule.radius + .2f), Color.red);
+		//if (Physics.Raycast(stepRayLower.position, flatVelocity + transform.TransformDirection(-1.5f, 0, 1), out hitLowerMinus45, capsule.radius + 0.2f))
+		//{
+		//	float normalAngle = Vector3.Angle(hitLower.normal, transform.up);
+		//	//if (Mathf.Approximately(normalAngle, 90f))
+		//	if (normalAngle > slopeLimit && normalAngle < 91f)
+		//	{
+		//		Debug.Log(normalAngle);
+		//		RaycastHit hitUpperMinus45;
+		//		Debug.DrawRay(stepRayUpper.position, ((flatVelocity + transform.TransformDirection(-1.5f, 0, 1)).normalized) * (hitLower.distance + .01f), Color.red);
+		//		if (!Physics.Raycast(stepRayUpper.position, flatVelocity + transform.TransformDirection(-1.5f, 0, 1), out hitUpperMinus45, hitLowerMinus45.distance + .01f))
+		//		{
+		//			rb.position += new Vector3(0f, stepSmooth * currentSpeed * Time.deltaTime, 0f);
+		//			isGrounded = true;
+		//		}
+		//	}
+		//}
 	}
+
+	//void StepClimb()
+	//{
+	//	RaycastHit hitLower;
+	//	if (Physics.Raycast(stepRayLower.position, transform.TransformDirection(Vector3.forward), out hitLower, capsule.radius + 0.01f))
+	//	{
+	//		float normalAngle = Vector3.Angle(hitLower.normal, transform.up);
+	//		if (normalAngle == 90f)
+	//		{
+	//			Debug.Log(normalAngle);
+	//			RaycastHit hitUpper;
+	//			if (!Physics.Raycast(stepRayUpper.position, transform.TransformDirection(Vector3.forward), out hitUpper, capsule.radius + 0.2f))
+	//			{
+	//				rb.position += new Vector3(0f, stepSmooth * currentSpeed * Time.deltaTime, 0f);
+	//				isGrounded = true;
+	//			} 
+	//		}
+	//	}
+
+	//	RaycastHit hitLower45;
+	//	if (Physics.Raycast(stepRayLower.position, transform.TransformDirection(1.5f, 0, 1), out hitLower45, capsule.radius + 0.2f))
+	//	{
+	//		float normalAngle = Vector3.Angle(hitLower.normal, transform.up);
+	//		if (normalAngle == 90f)
+	//		{
+	//			Debug.Log(normalAngle);
+	//			RaycastHit hitUpper45;
+	//			if (!Physics.Raycast(stepRayUpper.position, transform.TransformDirection(1.5f, 0, 1), out hitUpper45, capsule.radius + 0.2f))
+	//			{
+	//				rb.position += new Vector3(0f, stepSmooth * currentSpeed * Time.deltaTime, 0f);
+	//			}
+	//		}
+	//	}
+
+	//	RaycastHit hitLowerMinus45;
+	//	if (Physics.Raycast(stepRayLower.position, transform.TransformDirection(-1.5f, 0, 1), out hitLowerMinus45, capsule.radius + 0.2f))
+	//	{
+	//		float normalAngle = Vector3.Angle(hitLower.normal, transform.up);
+	//		if (normalAngle == 90f)
+	//		{
+	//			Debug.Log(normalAngle);
+	//			RaycastHit hitUpperMinus45;
+	//			if (!Physics.Raycast(stepRayUpper.position, transform.TransformDirection(-1.5f, 0, 1), out hitUpperMinus45, capsule.radius + 0.2f))
+	//			{
+	//				rb.position += new Vector3(0f, stepSmooth * currentSpeed * Time.deltaTime, 0f);
+	//			}
+	//		}
+	//	}
+	//}
 }
